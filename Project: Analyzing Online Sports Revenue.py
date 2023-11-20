@@ -14,7 +14,7 @@ merged_df = merged_df.merge(brands, on="product_id")
 merged_df.dropna(inplace=True)
 
 # Add price labels based on listing_price quartiles
-merged_df["price_label"] = pd.qcut(merged_df["listing_price"], q=4, labels=["Budget", "Average", "Expensive", "Elite"])
+merged_df["price_label"] = pd.cut(merged_df["listing_price"], q=4, labels=["Budget", "Average", "Expensive", "Elite"])
 
 # Group by brand and price_label to get volume and mean revenue
 adidas_vs_nike = merged_df.groupby(["brand", "price_label"], as_index=False).agg(
